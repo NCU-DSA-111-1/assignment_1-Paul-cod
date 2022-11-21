@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include<time.h>
 
 double sigmoid(double x) { return 1 / (1 + exp(-x)); }
 double dSigmoid(double x) { return x * (1 - x); }
@@ -9,6 +10,7 @@ void shuffle(int *array, size_t n)
 {
     if (n > 1)
     {   
+        srand(time(NULL));
         size_t i;
         for (i = 0; i < n - 1; i++)
         {
