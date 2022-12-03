@@ -22,24 +22,36 @@ int main (void) {
 #define numInputs 2
 #define numHiddenNodes 2
 #define numOutputs 1
+#define numTrainingSets 4
     
     const double lr = 0.1f;
     
-    double hiddenLayer[numHiddenNodes];
-    double outputLayer[numOutputs];
+    double *hiddenLayer=(double*)malloc(numHiddenNodes*sizeof(double));
+    double *outputLayer=(double*)malloc(numOutputs*sizeof(double));
     
-    double hiddenLayerBias[numHiddenNodes];
-    double outputLayerBias[numOutputs];
+    double *hiddenLayerBias=(double*)malloc(numHiddenNodes*sizeof(double));
+    double *outputLayerBias=(double*)malloc(numOutputs*sizeof(double));
  
-    double hiddenWeights[numInputs][numHiddenNodes];
-    double outputWeights[numHiddenNodes][numOutputs];
+    double **hiddenWeights=(double**)malloc(numInputs*sizeof(double*));
+    for (int i = 0; i < numInputs; i++)
+    {
+        hiddenWeights[i]=(double*)malloc(numHiddenNodes*sizeof(double));
+    }
     
-#define numTrainingSets 4
+    //double **outputWeights=(double**)malloc[numHiddenNodes][numOutputs];
+    double **outputWeights=(double*)malloc(numHiddenNodes*sizeof(double*));
+    for (int i = 0; i < numHiddenNodes; i++)
+    {
+        outputWeights[i]=(double*)malloc(numOutputs*sizeof(double*));
+    }
+    
+
  
     double training_inputs[numTrainingSets][numInputs] = {{0.0f,0.0f},
                                                           {1.0f,0.0f},
                                                           {0.0f,1.0f},
                                                           {1.0f,1.0f}};
+
     double training_outputs[numTrainingSets][numOutputs] = {{0.0f},
                                                             {1.0f},
                                                             {1.0f},
@@ -152,7 +164,7 @@ int main (void) {
     }
     fputs ("]\n", stdout);
 
-    printf("\n0000009090900");
+   
  
     return 0;
 }
